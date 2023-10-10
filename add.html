@@ -3,68 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="my.css">
     <title>Add Page</title>
     <style>
-        .c{
+        .c {
             text-align: center;
-            margin-top : 200px;
+            margin-top: 200px;
         }
 
-        .b{
-            text-align : center;
-            color : red;
-            margin : 50px;
-            font-size : 30px;
+        .b {
+            text-align: center;
+            color: red;
+            margin: 50px;
+            font-size: 30px;
         }
 
     </style>
 </head>
 <body>
-    <div class="a">
+<div class="a">
     <h1 class="b">Add Page</h1>
+    <ul>
+        <li><a href="index.html">Home</a></li></ul>
     <div class="c">
-    <form name="myForm" onsubmit="return saveFormData()">
-        <label for="name">Name:</label><br>
-        <input type="text" id="name" name="name"><br>
-        <label for="phone">Phone:</label><br>
-        <input type="text" id="phone" name="phone"><br>
-        <label for="email">Email:</label><br>
-        <input type="text" id="email" name="email"><br>
-        <label for="birth">Birth:</label><br>
-        <input type="text" id="birth" name="birth"><br>
-        <label for="address">Address:</label><br>
-        <input type="text" id="address" name="address"><br>
-        <input type="submit" value="submit">
-    </form>
+        <form name="myForm" onsubmit="return saveFormData()">
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" name="name" required><br> 
+            <label for="phone">Phone:</label><br>
+            <input type="text" id="phone" name="phone" required><br>
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email" required><br> 
+            <label for="birth">Birth:</label><br>
+            <input type="text" id="birth" name="birth" required><br>
+            <label for="address">Address:</label><br>
+            <input type="text" id="address" name="address" required><br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
 </div>
-</div>
 
-    <script>
-        function saveFormData() {
-            let name = document.forms["myForm"]["name"].value;
-            let phone = document.forms["myForm"]["phone"].value;
-            let email = document.forms["myForm"]["email"].value;
-            let birth = document.forms["myForm"]["birth"].value;
-            let address = document.forms["myForm"]["address"].value;
+<script>
+    function saveFormData() {
+        let name = document.forms["myForm"]["name"].value;
+        let phone = document.forms["myForm"]["phone"].value;
+        let email = document.forms["myForm"]["email"].value;
+        let birth = document.forms["myForm"]["birth"].value;
+        let address = document.forms["myForm"]["address"].value;
 
-
-            localStorage.setItem('formData', JSON.stringify({
-                name: name,
-                phone: phone,
-                email: email,
-                birth: birth,
-                address: address
-            }));
-
-            showAlert();
-
-            return true;
-        }   
-
-
-        function showAlert(){
-            alert("게시물이 추가되었습니다");
+     
+        if (name === "" || phone === "" || email === "" || birth === "" || address === "") {
+            alert("모든 필드를 입력해주세요.");
+            return false; 
         }
-    </script>
+
+        localStorage.setItem('formData', JSON.stringify({
+            name: name,
+            phone: phone,
+            email: email,
+            birth: birth,
+            address: address
+        }));
+
+        showAlert();
+
+        return true;
+    }
+
+    function showAlert() {
+        alert("게시물이 추가되었습니다");
+    }
+</script>
 </body>
 </html>
