@@ -6,18 +6,18 @@
     <title>Document</title>
    
     <style>
-        .title{
-            margin : 5px;
-            padding : 0;
+        .title {
+            margin: 5px;
+            padding: 0;
             background-color: rgb(225, 234, 235);
-            size : 13px;
+            size: 13px;
         }
         ul {
             list-style-type: none;
             margin: 0;
             padding: 0;
             overflow: hidden;
-            background-color: #333;
+            background-color: #191717e2;
         }
 
         li {
@@ -31,7 +31,7 @@
             padding: 14px 16px;
             text-decoration: none;
         }
-        
+
         table {
             width: 100%;
             border-top: 1px solid #444444;
@@ -42,65 +42,30 @@
             border-bottom: 1px solid #444444;
             padding: 10px;
             text-align: center;
+            cursor: pointer; /* 커서를 포인터로 변경하여 클릭 가능하게 만듭니다. */
         }
 
-        .find{
-            margin-left : 1600px;
-            padding : 0;
+        .find {
+            margin-left: 1600px;
+            padding: 0;
         }
-        
-        .search{
+
+        .search {
             text-align: right;
-            margin-bottom : 10px;
+            margin-bottom: 10px;
         }
 
-        .Infor{
-            margin-left : 5px;
+        .Infor {
+            margin-left: 5px;
         }
-
-        
     </style>
-<script>
-
-    function addDataToTable() {
-        let storedData = JSON.parse(localStorage.getItem('formData'));
-
-        if (storedData) {
-            let table = document.querySelector("table tbody");
-            let newRow = table.insertRow(table.rows.length);
-
-            let nameCell = newRow.insertCell(0);
-            let phoneCell = newRow.insertCell(1);
-            let emailCell = newRow.insertCell(2);
-            let birthCell = newRow.insertCell(3);
-            let addressCell = newRow.insertCell(4);
-            let menuCell = newRow.insertCell(5);
-
-            nameCell.innerHTML = storedData.name;
-            phoneCell.innerHTML = storedData.phone;
-            emailCell.innerHTML = storedData.email;
-            birthCell.innerHTML = storedData.birth;
-            addressCell.innerHTML = storedData.address;
-      
-            menuCell.innerHTML = `<button onclick="window.location.href='edit.html'">수정</button> <button onclick="deleteRow(this)">삭제</button>`;
-        }
-    }
-
-    window.addEventListener('load', addDataToTable);
-
-    function deleteRow(button) {
-        let row = button.parentNode.parentNode;
-        row.parentNode.removeChild(row);
-    }
-</script>
-
 </head>
 <body>
     
     <div>
         <h1 class="title">Bugyu`s Friends</h1>
         <ul>
-            <li><a href="default.asp">Home</a></li>
+            <li><a href="index.html">Home</a></li>
             <li><a href="news.asp">News</a></li>
             <li><a href="contact.asp">Contact</a></li>
             <li><a href="about.asp">About</a></li>
@@ -111,7 +76,7 @@
         <div>
             <h2 class="Infor">Friend list <span class="find">find Friends</span></h2>
             <div class="search">
-                <input type = "text" placeholder="name">
+                <input type="text" placeholder="name">
                 <button>Search</button>
                 <div class="add">
                     <button onclick="window.location.href='add.html'" class="add-button">Add</button>
@@ -125,14 +90,68 @@
                 </thead>    
                 <tbody>
                     <tr>
-                        <td>HyenGin</td><td>010-2345-1234</td><td>hyengin123@handong.ac.kr</td><td>2001.02.21</td><td>handong</td><td>
-                       
-                            <button onclick="window.location.href='edit.html'">수정</button> <button onclick="deleteRow(this)">삭제</button>
+                        <td onclick="showDetails('HyenGin', '010-2345-1234', 'hyengin123@handong.ac.kr', '2001.02.21', 'handong')">HyenGin</td>
+                        <td onclick="showDetails('HyenGin', '010-2345-1234', 'hyengin123@handong.ac.kr', '2001.02.21', 'handong')">010-2345-1234</td>
+                        <td onclick="showDetails('HyenGin', '010-2345-1234', 'hyengin123@handong.ac.kr', '2001.02.21', 'handong')">hyengin123@handong.ac.kr</td>
+                        <td onclick="showDetails('HyenGin', '010-2345-1234', 'hyengin123@handong.ac.kr', '2001.02.21', 'handong')">2001.02.21</td>
+                        <td onclick="showDetails('HyenGin', '010-2345-1234', 'hyengin123@handong.ac.kr', '2001.02.21', 'handong')">handong</td>
+                        <td>
+                            <button onclick="window.location.href='edit.html'">수정</button>
+                            <button onclick="deleteRow(this)">삭제</button>
                         </td>
                     </tr>
+                    <tr>
+                        <td onclick="showDetails('bugyu', '010-2345-1234', 'bugyu3@handong.ac.kr', '19991.02.21', 'handong2')">bugyu</td>
+                        <td onclick="showDetails('bugyu', '010-2345-1234', 'bugyu3@handong.ac.kr', '19991.02.21', 'handong2')">010-2345-1234</td>
+                        <td onclick="showDetails('bugyu', '010-2345-1234', 'bugyu3@handong.ac.kr', '19991.02.21', 'handong2')">bugyu3@handong.ac.kr</td>
+                        <td onclick="showDetails('bugyu', '010-2345-1234', 'bugyu3@handong.ac.kr', '19991.02.21', 'handong2')">19991.02.21</td>
+                        <td onclick="showDetails('bugyu', '010-2345-1234', 'bugyu3@handong.ac.kr', '19991.02.21', 'handong2')">handong2</td>
+                        <td>
+                            <button onclick="window.location.href='edit.html'">수정</button>
+                            <button onclick="deleteRow(this)">삭제</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td onclick="showDetails('Haran', '010-4213-1234', 'harn3@handong.ac.kr', '2002.08.21', 'handong3')">Haran</td>
+                        <td onclick="showDetails('Haran', '010-4213-1234', 'harn3@handong.ac.kr', '2002.08.21', 'handong3')">010-4213-1234</td>
+                        <td onclick="showDetails('Haran', '010-4213-1234', 'harn3@handong.ac.kr', '2002.08.21', 'handong3')">harn3@handong.ac.kr</td>
+                        <td onclick="showDetails('Haran', '010-4213-1234', 'harn3@handong.ac.kr', '2002.08.21', 'handong3')">2002.08.21</td>
+                        <td onclick="showDetails('Haran', '010-4213-1234', 'harn3@handong.ac.kr', '2002.08.21', 'handong3')">handong3</td>
+                        <td>
+                            <button onclick="window.location.href='edit.html'">수정</button>
+                            <button onclick="deleteRow(this)">삭제</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td onclick="showDetails('toka', '010-4213-1525', 'toka@handong.ac.kr', '2004.08.21', 'handong4')">toka</td>
+                        <td onclick="showDetails('toka', '010-4213-1525', 'toka@handong.ac.kr', '2004.08.21', 'handong4')">010-4213-1525</td>
+                        <td onclick="showDetails('toka', '010-4213-1525', 'toka@handong.ac.kr', '2004.08.21', 'handong4')">toka@handong.ac.kr</td>
+                        <td onclick="showDetails('toka', '010-4213-1525', 'toka@handong.ac.kr', '2004.08.21', 'handong4')">2004.08.21</td>
+                        <td onclick="showDetails('toka', '010-4213-1525', 'toka@handong.ac.kr', '2004.08.21', 'handong4')">handong4</td>
+                        <td>
+                            <button onclick="window.location.href='edit.html'">수정</button>
+                            <button onclick="deleteRow(this)">삭제</button>
+                        </td>
+                    </tr>
+                  
                 </tbody>
             </table>
         </div>
     </div>
+
+    <script>
+        function showDetails(name, phone, email, birth, address) {
+            window.location.href = `view.html?name=${name}&phone=${phone}&email=${email}&birth=${birth}&address=${address}`;
+        }
+
+        function deleteRow(button) {
+            if (confirm("게시물을 삭제하시겠습니까?")) {
+            let row = button.parentNode.parentNode;
+            row.parentNode.removeChild(row);
+        } else {
+            
+        }
+    }
+    </script>
 </body>
 </html>
