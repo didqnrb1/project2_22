@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   
+    <style>
+        .title{
+            margin : 5px;
+            padding : 0;
+            background-color: rgb(225, 234, 235);
+            size : 13px;
+        }
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        li {
+            float: left;
+        }
+
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        
+        table {
+            width: 100%;
+            border-top: 1px solid #444444;
+            border-collapse: collapse;
+            text-align: center;
+        }
+        th, td {
+            border-bottom: 1px solid #444444;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .find{
+            margin-left : 1600px;
+            padding : 0;
+        }
+        
+        .search{
+            text-align: right;
+            margin-bottom : 10px;
+        }
+
+        .Infor{
+            margin-left : 5px;
+        }
+
+        
+    </style>
+<script>
+
+    function addDataToTable() {
+        let storedData = JSON.parse(localStorage.getItem('formData'));
+
+        if (storedData) {
+            let table = document.querySelector("table tbody");
+            let newRow = table.insertRow(table.rows.length);
+
+            let nameCell = newRow.insertCell(0);
+            let phoneCell = newRow.insertCell(1);
+            let emailCell = newRow.insertCell(2);
+            let birthCell = newRow.insertCell(3);
+            let addressCell = newRow.insertCell(4);
+            let menuCell = newRow.insertCell(5);
+
+            nameCell.innerHTML = storedData.name;
+            phoneCell.innerHTML = storedData.phone;
+            emailCell.innerHTML = storedData.email;
+            birthCell.innerHTML = storedData.birth;
+            addressCell.innerHTML = storedData.address;
+      
+            menuCell.innerHTML = `<button onclick="window.location.href='edit.html'">수정</button> <button onclick="deleteRow(this)">삭제</button>`;
+        }
+    }
+
+    window.addEventListener('load', addDataToTable);
+
+    function deleteRow(button) {
+        let row = button.parentNode.parentNode;
+        row.parentNode.removeChild(row);
+    }
+</script>
+
+</head>
+<body>
+    
+    <div>
+        <h1 class="title">Bugyu`s Friends</h1>
+        <ul>
+            <li><a href="default.asp">Home</a></li>
+            <li><a href="news.asp">News</a></li>
+            <li><a href="contact.asp">Contact</a></li>
+            <li><a href="about.asp">About</a></li>
+        </ul>
+    </div>
+
+    <div>
+        <div>
+            <h2 class="Infor">Friend list <span class="find">find Friends</span></h2>
+            <div class="search">
+                <input type = "text" placeholder="name">
+                <button>Search</button>
+                <div class="add">
+                    <button onclick="window.location.href='add.html'" class="add-button">Add</button>
+                </div>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th><th>Phone</th><th>Email</th><th>Birth</th><th>Address</th><th>Menu</th>
+                    </tr>
+                </thead>    
+                <tbody>
+                    <tr>
+                        <td>HyenGin</td><td>010-2345-1234</td><td>hyengin123@handong.ac.kr</td><td>2001.02.21</td><td>handong</td><td>
+                       
+                            <button onclick="window.location.href='edit.html'">수정</button> <button onclick="deleteRow(this)">삭제</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
